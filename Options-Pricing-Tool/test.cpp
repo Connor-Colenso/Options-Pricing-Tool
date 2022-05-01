@@ -3,7 +3,7 @@
 #include "../Options-Pricing-Library/Options-Pricing-Lib.cpp"
 
 TEST(MonteCarloEuropean, Put) {
-	constexpr int n = 1000; // Number of steps used in each simulation.
+    constexpr int n = 1000; // Number of steps used in each simulation.
     constexpr int number_of_simulations = 100000; // Number of simulations.
 
     constexpr float k = 15; // Strike
