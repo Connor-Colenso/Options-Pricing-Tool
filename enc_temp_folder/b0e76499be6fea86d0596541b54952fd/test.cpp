@@ -7,7 +7,7 @@
 // ---------------------- European Options Tests ----------------------
 
 constexpr int n = 500; // Number of steps used in each simulation.
-constexpr int number_of_simulations = 500000; // Number of simulations.
+constexpr int number_of_simulations = 100000; // Number of simulations.
 
 constexpr float k = 15; // Strike.
 constexpr float r = 0.05; // Risk-free interest rate.

@@ -155,7 +155,10 @@
     <ClInclude Include="Options-Pricing-Lib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Options-Pricing-Lib.cpp" />
+    <ClCompile Include="Asian.cpp" />
+    <ClCompile Include="Brownian_Motion.cpp" />
+    <ClCompile Include="Monte_Carlo.cpp" />
+    <ClCompile Include="Payoff.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
