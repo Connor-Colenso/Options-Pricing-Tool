@@ -7,19 +7,19 @@
 // ---------------------- General Test Setup --------------------------
 
 // Monte Carlo Settings.
-constexpr int time_steps_per_simulation = 500;
-constexpr int number_of_simulations = 500000;
+constexpr int time_steps_per_simulation = 50;
+constexpr int number_of_simulations = 5000000;
 
 // Option Settings.
-constexpr float strike = 15;
-constexpr float risk_free_interest_rate = 0.05;
-constexpr float continuous_dividend_yield = 0.01;
-constexpr float time_until_option_expiry = 1;
-constexpr float volatility = 0.04;
-constexpr float spot_price_of_underlying = 14.5;
+constexpr float strike = 15.0f;
+constexpr float risk_free_interest_rate = 0.05f;
+constexpr float continuous_dividend_yield = 0.01f;
+constexpr float time_until_option_expiry = 1.0f;
+constexpr float volatility = 0.04f;
+constexpr float spot_price_of_underlying = 14.5f;
 
 // Test Settings
-constexpr float tolerance = 10e-3;
+constexpr float tolerance = 0.01;
 
 // ---------------------- European Options Tests ----------------------
 
@@ -54,7 +54,7 @@ TEST(Payoff, European_Call) {
 // --- Chooser Option ---
 
 TEST(Monte_Carlo_European, Chooser) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Chooser), 0.50190, tolerance);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Chooser), 0.46611, tolerance);
 }
 
 TEST(Payoff, European_Chooser) {

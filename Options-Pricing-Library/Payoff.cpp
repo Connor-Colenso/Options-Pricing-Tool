@@ -21,6 +21,30 @@ namespace Payoff {
         return std::abs(array[array.size() - 1] - strike);
     }
 
+    float European_Put_Squared(const float& strike, const std::vector<float>& array) {
+        float payoff = (strike - array[array.size() - 1]);
+
+        return (payoff <= 0) ? 0 : payoff * payoff;
+    }
+
+    float European_Call_Squared(const float& strike, const std::vector<float>& array) {
+        float payoff = (array[array.size() - 1] - strike);
+
+        return (payoff <= 0) ? 0 : payoff * payoff;
+    }
+
+    float European_Lookback_Max(const float& strike, const std::vector<float>& array) {
+        float payoff = (*std::max(array.begin(), array.end()) - strike);
+
+        return (payoff <= 0) ? 0 : payoff;
+    }
+
+    float European_Lookback_Min(const float& strike, const std::vector<float>& array) {
+        float payoff = (strike - *std::min(array.begin(), array.end()));
+
+        return (payoff <= 0) ? 0 : payoff;
+    }
+
     // ----------------- Asian Payoffs ---------------------
 
     float Asian_Fixed_Strike_Arithmetic_Put(const float& strike, const std::vector<float>& array) {
@@ -70,10 +94,10 @@ float Arithmetic_Average(std::vector<float> array) {
 
 float Geometric_Average(std::vector<float> array) {
     float total_prod = 1;
-    float exponent = (float)array.size();
+    float exponent = 1.0 / (float)array.size();
 
     for (const auto& i : array) {
-        total_prod *= pow(i, 1.0 / exponent);
+        total_prod *= pow(i, exponent);
     }
 
     return total_prod;
