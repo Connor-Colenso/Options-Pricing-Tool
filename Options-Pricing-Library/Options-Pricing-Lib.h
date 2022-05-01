@@ -14,14 +14,17 @@ namespace Payoff {
 	float European_Put(const float& strike, const std::vector<float>& array);
 	float European_Call(const float& strike, const std::vector<float>& array);
 	float European_Chooser(const float& strike, const std::vector<float>& array);
+	// TODO: European_Lookback
 
 	float Asian_Fixed_Strike_Arithmetic_Put(const float& strike, const std::vector<float>& array);
 	float Asian_Fixed_Strike_Arithmetic_Call(const float& strike, const std::vector<float>& array);
 	float Asian_Fixed_Strike_Arithmetic_Chooser(const float& strike, const std::vector<float>& array);
+	// TODO: Asian_Fixed_Strike_Arithmetic_Lookback
 
 	float Asian_Fixed_Strike_Geometric_Put(const float& strike, const std::vector<float>& array);
 	float Asian_Fixed_Strike_Geometric_Call(const float& strike, const std::vector<float>& array);
 	float Asian_Fixed_Strike_Geometric_Chooser(const float& strike, const std::vector<float>& array);
+	// TODO: Asian_Fixed_Strike_Geometric_Lookback
 }
 
 float Arithmetic_Average(std::vector<float> array);
