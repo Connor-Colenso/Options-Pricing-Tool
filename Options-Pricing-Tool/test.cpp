@@ -7,8 +7,8 @@
 // ---------------------- General Test Setup --------------------------
 
 // Monte Carlo Settings.
-constexpr int time_steps_per_simulation = 50;
-constexpr int number_of_simulations = 5000000;
+constexpr int time_steps_per_simulation = 500;
+constexpr int number_of_simulations = 500000;
 
 // Option Settings.
 constexpr float strike = 15.0f;
@@ -64,6 +64,63 @@ TEST(Payoff, European_Chooser) {
     EXPECT_EQ(Payoff::European_Chooser(10, v_0), 5);
     EXPECT_EQ(Payoff::European_Chooser(5, v_1), 5);
 }
+
+// --- Lookback Max Option (Also known as Russian) ---
+
+TEST(Monte_Carlo_European, Lookback_Max_Call) {
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Lookback_Max_Call), 0, tolerance);
+}
+
+TEST(Payoff, European_Lookback_Max_Call) {
+    std::vector<float> v_0 = { 6,4,1,5 };
+    std::vector<float> v_1 = { 1,2,3,10 };
+
+    EXPECT_EQ(Payoff::European_Lookback_Max_Call(10, v_0), 5);
+    EXPECT_EQ(Payoff::European_Lookback_Max_Call(5, v_1), 5);
+}
+
+// --- Lookback Min Option ---
+
+TEST(Monte_Carlo_European, Lookback_Min_Put) {
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Lookback_Min_Put), 0, tolerance);
+}
+
+TEST(Payoff, European_Lookback_Min_Put) {
+    std::vector<float> v_0 = { 6,4,1,5 };
+    std::vector<float> v_1 = { 3,2,3,10 };
+
+    EXPECT_EQ(Payoff::European_Lookback_Min_Put(10, v_0), 9);
+    EXPECT_EQ(Payoff::European_Lookback_Min_Put(5, v_1), 3);
+}
+
+// --- Call Squared Option ---
+
+TEST(Monte_Carlo_European, Call_Squared) {
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Call_Squared), 0, tolerance);
+}
+
+TEST(Payoff, European_Call_Squared) {
+    std::vector<float> v_0 = { 6,4,1,5 };
+    std::vector<float> v_1 = { 1,2,3,10 };
+
+    EXPECT_EQ(Payoff::European_Call_Squared(10, v_0), 25);
+    EXPECT_EQ(Payoff::European_Call_Squared(5, v_1), 25);
+}
+
+// --- Put Squared Option ---
+
+TEST(Monte_Carlo_European, Put_Squared) {
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Put_Squared), 0, tolerance);
+}
+
+TEST(Payoff, European_Put_Squared) {
+    std::vector<float> v_0 = { 6,4,1,5 };
+    std::vector<float> v_1 = { 1,2,3,10 };
+
+    EXPECT_EQ(Payoff::European_Put_Squared(10, v_0), 25);
+    EXPECT_EQ(Payoff::European_Put_Squared(5, v_1), 25);
+}
+
 
 // ---------------------- Arithmetic Asian Options Tests ----------------------
 

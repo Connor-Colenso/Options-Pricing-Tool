@@ -33,13 +33,13 @@ namespace Payoff {
         return (payoff <= 0) ? 0 : payoff * payoff;
     }
 
-    float European_Lookback_Max(const float& strike, const std::vector<float>& array) {
+    float European_Lookback_Max_Call(const float& strike, const std::vector<float>& array) {
         float payoff = (*std::max(array.begin(), array.end()) - strike);
 
         return (payoff <= 0) ? 0 : payoff;
     }
 
-    float European_Lookback_Min(const float& strike, const std::vector<float>& array) {
+    float European_Lookback_Min_Put(const float& strike, const std::vector<float>& array) {
         float payoff = (strike - *std::min(array.begin(), array.end()));
 
         return (payoff <= 0) ? 0 : payoff;
