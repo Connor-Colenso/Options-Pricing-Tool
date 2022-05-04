@@ -155,7 +155,6 @@
     <ClInclude Include="Options-Pricing-Lib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Asian.cpp" />
     <ClCompile Include="Brownian_Motion.cpp" />
     <ClCompile Include="Monte_Carlo.cpp" />
     <ClCompile Include="Payoff.cpp" />

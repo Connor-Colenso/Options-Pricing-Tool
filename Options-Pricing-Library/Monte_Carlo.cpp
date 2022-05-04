@@ -16,7 +16,7 @@ void Monte_Carlo_Core(const int number_of_simulations, const int time_steps_per_
 }
 
 
-float Monte_Carlo(const int number_of_simulations, const int time_steps_per_simulation, const float& strike, const float risk_free_interest_rate, const float& continuous_dividend_yield, const float time_until_option_expiry, const float volatility, const float spot_price_of_underlying, float (*payoff_function)(const float& strike, const std::vector<float>& array), int thread_override = -1) {
+float Monte_Carlo(const int number_of_simulations, const int time_steps_per_simulation, const float& strike, const float risk_free_interest_rate, const float& continuous_dividend_yield, const float time_until_option_expiry, const float volatility, const float spot_price_of_underlying, float (*payoff_function)(const float& strike, const std::vector<float>& array), int thread_override) {
     
     int total_threads = std::thread::hardware_concurrency();
     
@@ -61,7 +61,7 @@ float Monte_Carlo(const int number_of_simulations, const int time_steps_per_simu
     
     float sum = std::accumulate(thread_output_vector.begin(),
                                 thread_output_vector.end(),
-                                0.0);
+                                float(0));
     
     return sum / number_of_simulations;
 }

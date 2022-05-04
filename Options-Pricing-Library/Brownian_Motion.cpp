@@ -12,7 +12,7 @@ namespace Utility {
 
         for (int i = 0; i < (n); ++i) {
             array[i] = tmp;
-            tmp += d(gen) * dt;
+            tmp += float(d(gen)) * dt;
         }
     }
 
@@ -23,7 +23,7 @@ namespace Utility {
         float t_counter = 0;
         float pre_t_division = t / (float)n;
 
-        float pre_calc_drift = mu - 0.5 * sigma * sigma;
+        float pre_calc_drift = mu - float(0.5) * sigma * sigma;
 
         for (int i = 0; i < n; ++i) {
             array[i] = x0 * std::exp(pre_calc_drift * t_counter + array[i] * sigma);

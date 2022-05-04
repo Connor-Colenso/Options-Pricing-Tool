@@ -88,13 +88,13 @@ namespace Payoff {
     }
 }
 
-float Arithmetic_Average(std::vector<float> array) {
-    return std::accumulate(array.begin(), array.end(), 0.0) / (float)array.size();
+float Arithmetic_Average(const std::vector<float>& array) {
+    return std::accumulate(array.begin(), array.end(), float(0)) / (float)array.size();
 }
 
-float Geometric_Average(std::vector<float> array) {
+float Geometric_Average(const std::vector<float>& array) {
     float total_prod = 1;
-    float exponent = 1.0 / (float)array.size();
+    float exponent = float(1) / (float) array.size();
 
     for (const auto& i : array) {
         total_prod *= pow(i, exponent);
