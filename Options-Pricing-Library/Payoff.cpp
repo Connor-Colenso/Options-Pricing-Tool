@@ -93,12 +93,13 @@ float Arithmetic_Average(const std::vector<float>& array) {
 }
 
 float Geometric_Average(const std::vector<float>& array) {
-    float total_prod = 1;
-    float exponent = float(1) / (float) array.size();
 
-    for (const auto& i : array) {
-        total_prod *= pow(i, exponent);
-    }
+	std::vector<float> logs(array.size());
 
-    return total_prod;
+    float total_prod = 1.0f;
+    float exponent = 1.0f / (float) array.size();
+	std::transform(array.begin(), array.end(), logs.begin(), std::log2f);
+	float sum = (1.0f / (float) array.size()) * std::accumulate(logs.begin(), logs.end(), 0.0f);
+
+    return pow(2.0f, sum);
 }

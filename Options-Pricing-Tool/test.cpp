@@ -7,8 +7,8 @@
 // ---------------------- General Test Setup --------------------------
 
 // Monte Carlo Settings.
-constexpr int time_steps_per_simulation = 500;
-constexpr int number_of_simulations = 500000;
+static constexpr int time_steps_per_simulation = 500;
+static constexpr int number_of_simulations = 500000;
 
 // Option Settings.
 static constexpr float strike = 15.0f;
@@ -19,7 +19,7 @@ static constexpr float volatility = 0.04f;
 static constexpr float spot_price_of_underlying = 14.5f;
 
 // Test Settings
-constexpr float tolerance = 0.01;
+static constexpr float tolerance = 0.01;
 
 // ---------------------- European Options Tests ----------------------
 
@@ -82,7 +82,7 @@ TEST(Payoff, European_Lookback_Max_Call) {
 // --- Lookback Min Option ---
 
 TEST(Monte_Carlo_European, Lookback_Min_Put) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Lookback_Min_Put), 0, tolerance);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Lookback_Min_Put), 0.48046556115150452, tolerance);
 }
 
 TEST(Payoff, European_Lookback_Min_Put) {
@@ -96,7 +96,7 @@ TEST(Payoff, European_Lookback_Min_Put) {
 // --- Call Squared Option ---
 
 TEST(Monte_Carlo_European, Call_Squared) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Call_Squared), 0, tolerance);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Call_Squared), 0.1322050541639328, tolerance);
 }
 
 TEST(Payoff, European_Call_Squared) {
@@ -193,3 +193,16 @@ TEST(Payoff, Asian_Fixed_Strike_Geometric_Chooser) {
     EXPECT_NEAR(Payoff::Asian_Fixed_Strike_Geometric_Chooser(1, array), 1.7976849784659, tolerance);
     EXPECT_NEAR(Payoff::Asian_Fixed_Strike_Geometric_Chooser(10, array), 7.20231502, tolerance);
 }
+
+// ---------------------- Average Tests ----------------------
+
+TEST(Average, Geometric) {
+	std::vector<float> array = { 1,2,3,4,5,6,7 };
+	EXPECT_NEAR(Geometric_Average(array), 3.380015159141, 10e-6);
+}
+
+TEST(Average, Arithmetic) {
+	std::vector<float> array = { 1,2,3,4,5,6,7 };
+	EXPECT_NEAR(Arithmetic_Average(array), 4.0, 10e-6);
+}
+
