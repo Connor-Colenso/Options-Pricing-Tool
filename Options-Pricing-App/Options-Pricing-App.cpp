@@ -26,8 +26,9 @@ int main() {
 	auto time_1 = std::chrono::high_resolution_clock::now();
 
 	//std::cout << Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::Asian_Fixed_Strike_Geometric_Call) << std::endl;
-	std::vector<float> array = { 1,2,3,4,5,6,1 };
-	std::cout << Payoff::European_Lookback_Min_Put(4, array) << std::endl;
+	std::vector<float> v_1 = { 3,2,3,10,2 };
+	std::cout << Payoff::European_Lookback_Min_Put(4, v_1) << std::endl;
+	std::cout << *std::min_element(v_1.begin(), v_1.end()) << std::endl;
 
 	auto time_2 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double, std::milli> ms_double = time_2 - time_1;

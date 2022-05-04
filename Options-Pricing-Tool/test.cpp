@@ -19,7 +19,7 @@ static constexpr float volatility = 0.04f;
 static constexpr float spot_price_of_underlying = 14.5f;
 
 // Test Settings
-static constexpr float tolerance = 0.01;
+static constexpr float tolerance = 0.01f;
 
 // ---------------------- European Options Tests ----------------------
 
@@ -68,21 +68,21 @@ TEST(Payoff, European_Chooser) {
 // --- Lookback Max Option (Also known as Russian) ---
 
 TEST(Monte_Carlo_European, Lookback_Max_Call) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Lookback_Max_Call), 0, tolerance);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Lookback_Max_Call), 0.37840631604194641, tolerance);
 }
 
 TEST(Payoff, European_Lookback_Max_Call) {
     std::vector<float> v_0 = { 6,4,1,5 };
     std::vector<float> v_1 = { 1,2,3,10 };
 
-    EXPECT_EQ(Payoff::European_Lookback_Max_Call(10, v_0), 5);
+    EXPECT_EQ(Payoff::European_Lookback_Max_Call(10, v_0), 0);
     EXPECT_EQ(Payoff::European_Lookback_Max_Call(5, v_1), 5);
 }
 
 // --- Lookback Min Option ---
 
 TEST(Monte_Carlo_European, Lookback_Min_Put) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Lookback_Min_Put), 0.48046556115150452, tolerance);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Lookback_Min_Put), 0.70214629173278809, tolerance);
 }
 
 TEST(Payoff, European_Lookback_Min_Put) {
@@ -96,7 +96,7 @@ TEST(Payoff, European_Lookback_Min_Put) {
 // --- Call Squared Option ---
 
 TEST(Monte_Carlo_European, Call_Squared) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Call_Squared), 0.1322050541639328, tolerance);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Call_Squared), 0.22547394037246704, tolerance);
 }
 
 TEST(Payoff, European_Call_Squared) {
@@ -110,7 +110,7 @@ TEST(Payoff, European_Call_Squared) {
 // --- Put Squared Option ---
 
 TEST(Monte_Carlo_European, Put_Squared) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Put_Squared), 0, tolerance);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Put_Squared), 0.13113369047641754, tolerance);
 }
 
 TEST(Payoff, European_Put_Squared) {
@@ -138,7 +138,7 @@ TEST(Payoff, Asian_Fixed_Strike_Arithmetic_Put) {
 // --- Arithmetic Call Option ---
 
 TEST(Monte_Carlo_Arithmetic_Asian, Call) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::Asian_Fixed_Strike_Arithmetic_Call), 0, tolerance);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::Asian_Fixed_Strike_Arithmetic_Call), 0.056176088750362396, tolerance);
 }
 
 TEST(Payoff, Asian_Fixed_Strike_Arithmetic_Call) {
@@ -174,7 +174,7 @@ TEST(Payoff, Asian_Fixed_Strike_Geometric_Put) {
 // --- Geometric Call Option ---
 
 TEST(Monte_Carlo_Geometric_Asian, Call) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::Asian_Fixed_Strike_Geometric_Call), 0, tolerance);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::Asian_Fixed_Strike_Geometric_Call), 0.054743491113185883, tolerance);
 }
 
 TEST(Payoff, Asian_Fixed_Strike_Geometric_Call) {
