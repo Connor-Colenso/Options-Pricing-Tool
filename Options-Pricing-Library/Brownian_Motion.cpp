@@ -17,7 +17,7 @@ namespace Utility {
     }
 
     void Geometric_Brownian_Motion(std::vector<float>& array, const int& n, const float& x0, const float& t, const float& mu, const float& sigma) {
-
+		
         Brownian_Motion(array, n);
 
         float t_counter = 0;

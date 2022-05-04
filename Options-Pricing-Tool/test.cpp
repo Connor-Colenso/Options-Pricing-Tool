@@ -103,7 +103,7 @@ TEST(Payoff, European_Call_Squared) {
     std::vector<float> v_0 = { 6,4,1,5 };
     std::vector<float> v_1 = { 1,2,3,10 };
 
-    EXPECT_EQ(Payoff::European_Call_Squared(10, v_0), 25);
+    EXPECT_EQ(Payoff::European_Call_Squared(10, v_0), 0);
     EXPECT_EQ(Payoff::European_Call_Squared(5, v_1), 25);
 }
 
@@ -118,7 +118,7 @@ TEST(Payoff, European_Put_Squared) {
     std::vector<float> v_1 = { 1,2,3,10 };
 
     EXPECT_EQ(Payoff::European_Put_Squared(10, v_0), 25);
-    EXPECT_EQ(Payoff::European_Put_Squared(5, v_1), 25);
+    EXPECT_EQ(Payoff::European_Put_Squared(5, v_1), 0);
 }
 
 
