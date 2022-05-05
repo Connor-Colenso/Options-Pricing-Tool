@@ -3,8 +3,7 @@
 namespace Utility {
     void Brownian_Motion(std::vector<float>& array, const int& n) {
         // Sample random values from a standardised normal distribution.
-        std::random_device rd{};
-        std::mt19937 gen{ rd() };
+        std::minstd_rand gen(std::random_device{}());
         std::normal_distribution<> d{ 0, 1 };
 
         float tmp = 0;
