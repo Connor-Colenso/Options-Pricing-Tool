@@ -2,14 +2,14 @@
 
 void Monte_Carlo_Core(const int simulations_per_thread, const int time_steps_per_simulation, const float strike, const float risk_free_interest_rate, const float continuous_dividend_yield, const float time_until_option_expiry, const float volatility, const float spot_price_of_underlying, float (*payoff_function)(const float& strike, const std::vector<float>& array), int thread_index, std::vector<float>& thread_output_vector) {
 
-    std::vector<float> array(time_steps_per_simulation);
+    std::vector<float> gbm(time_steps_per_simulation);
 
     float sum_payoff = 0;
     float discount_factor = std::exp(-(risk_free_interest_rate - continuous_dividend_yield) * time_until_option_expiry);
 
     for (int i = 0; i < simulations_per_thread; i++) {
-        Utility::Geometric_Brownian_Motion(array, time_steps_per_simulation, spot_price_of_underlying, time_until_option_expiry, risk_free_interest_rate - continuous_dividend_yield, volatility);
-        sum_payoff += (*payoff_function)(strike, array) * discount_factor;
+        Utility::Geometric_Brownian_Motion(gbm, time_steps_per_simulation, spot_price_of_underlying, time_until_option_expiry, risk_free_interest_rate - continuous_dividend_yield, volatility);
+        sum_payoff += (*payoff_function)(strike, gbm) * discount_factor;
     }
 
     thread_output_vector[thread_index] = sum_payoff;
@@ -26,7 +26,7 @@ float Monte_Carlo(const int number_of_simulations, const int time_steps_per_simu
     
     int simulations_per_thread = number_of_simulations / total_threads;
     int simulations_remaining = number_of_simulations;
-    std::vector<float> thread_output_vector(total_threads);
+    std::vector<float> thread_output_vector(total_threads+1);
     std::vector<std::thread> threads;
     
     int thread_index = 0;

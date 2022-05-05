@@ -1,12 +1,15 @@
 #include "Options-Pricing-Lib.h"
 
+std::minstd_rand gen(std::random_device{}());
+std::normal_distribution<> d{ 0, 1 };
+
 namespace Utility {
     void Brownian_Motion(std::vector<float>& array, const int& n) {
         // Sample random values from a standardised normal distribution.
-        std::minstd_rand gen(std::random_device{}());
-        std::normal_distribution<> d{ 0, 1 };
 
-        float tmp = 0;
+
+
+        float tmp = 0.0f;
         float dt = (float) std::sqrt(1.0 / (float)(n));
 
         for (int i = 0; i < (n); ++i) {
@@ -19,7 +22,7 @@ namespace Utility {
 		
         Brownian_Motion(array, n);
 
-        float t_counter = 0;
+        float t_counter = 0.0f;
         float pre_t_division = t / (float)n;
 
         float pre_calc_drift = mu - float(0.5) * sigma * sigma;
