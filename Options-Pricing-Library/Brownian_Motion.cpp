@@ -12,10 +12,11 @@ namespace Utility {
         for (int i = 0; i < array.size(); ++i) {
             array[i] = tmp;
             tmp += float(d(gen)) * dt;
+            //tmp += float(var_nor()) * dt;
         }
     }
 
-    void Geometric_Brownian_Motion(std::vector<float>& array, const float& x0, const float& t, const float& mu, const float& sigma) {
+    void Geometric_Brownian_Motion(std::vector<float>& array, const float& x0, const float& t, const float& mu, const float& sigma, const float& pre_t_division, const float& pre_calc_drift) {
 		
         Brownian_Motion(array);
 
@@ -25,8 +26,7 @@ namespace Utility {
         float pre_calc_drift = mu - float(0.5) * sigma * sigma;
 
         for (int i = 0; i < array.size(); ++i) {
-            array[i] = x0 * std::exp(pre_calc_drift * t_counter + array[i] * sigma);
-            t_counter += pre_t_division;
+            array[i] = x0 * std::exp(pre_calc_drift * pre_t_division * i + array[i] * sigma);
         }
     }
 }

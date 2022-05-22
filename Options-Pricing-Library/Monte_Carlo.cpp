@@ -7,6 +7,10 @@ void Monte_Carlo_Core(const int simulations_per_thread, const int time_steps_per
     float sum_payoff = 0;
     float discount_factor = std::exp(-(risk_free_interest_rate - continuous_dividend_yield) * time_until_option_expiry);
 
+    // For use in GBM/BM.
+    float pre_t_division = time_until_option_expiry / (float) time_steps_per_simulation;
+    float pre_calc_drift = (risk_free_interest_rate - continuous_dividend_yield) - 0.5f * volatility * volatility;
+
     for (int i = 0; i < simulations_per_thread; i++) {
         Utility::Geometric_Brownian_Motion(gbm, time_steps_per_simulation, spot_price_of_underlying, time_until_option_expiry, risk_free_interest_rate - continuous_dividend_yield, volatility);
         sum_payoff += (*payoff_function)(strike, gbm) * discount_factor;

@@ -6,10 +6,12 @@
 #include <algorithm>
 #include <thread>
 #include <numeric>
+#include <boost/random.hpp>
+#include <boost/random/normal_distribution.hpp>
 
 namespace Utility {
 	void Brownian_Motion(std::vector<float>& array);
-	void Geometric_Brownian_Motion(std::vector<float>& array, const float& x0, const float& t, const float& mu, const float& sigma);
+	void Geometric_Brownian_Motion(std::vector<float>& array, const float& x0, const float& t, const float& mu, const float& sigma, const float& pre_t_division, const float& pre_calc_drift);
 }
 
 namespace Payoff {
