@@ -1,13 +1,11 @@
 #pragma once
-#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+#define WIN32_LEAN_AND_MEAN // Exclude rarely-used stuff from Windows headers
 #include <iostream>
 #include <random>
 #include <chrono>
 #include <algorithm>
 #include <thread>
 #include <numeric>
-#include <boost/random.hpp>
-#include <boost/random/normal_distribution.hpp>
 
 namespace Utility {
 	void Brownian_Motion(std::vector<float>& array);
