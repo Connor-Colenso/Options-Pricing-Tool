@@ -6,7 +6,7 @@ namespace Payoff {
     // ----------------- European Payoffs ---------------------
 
     float European_Put(const float& strike, const std::vector<float>& array) {
-        float payoff = (strike - array.back());
+        float payoff = strike - array.back();
 
         return (payoff <= 0) ? 0 : payoff;
     }
