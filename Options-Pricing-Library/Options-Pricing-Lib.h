@@ -8,8 +8,8 @@
 #include <numeric>
 
 namespace Utility {
-	void Brownian_Motion(std::vector<float>& array, const int& n);
-	void Geometric_Brownian_Motion(std::vector<float>& array, const int& n, const float& x0, const float& t, const float& mu, const float& sigma);
+	void Brownian_Motion(std::vector<float>& array);
+	void Geometric_Brownian_Motion(std::vector<float>& array, const float& x0, const float& t, const float& mu, const float& sigma);
 }
 
 namespace Payoff {
