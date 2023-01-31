@@ -5,7 +5,7 @@ void Monte_Carlo_Core(const int simulations_per_thread, const int time_steps_per
     std::vector<float> gbm(time_steps_per_simulation);
 
     float sum_payoff = 0;
-    float discount_factor = std::exp(-(risk_free_interest_rate - continuous_dividend_yield) * time_until_option_expiry);
+    const float discount_factor = std::exp(-(risk_free_interest_rate - continuous_dividend_yield) * time_until_option_expiry);
 
     // For use in GBM/BM.
     float pre_t_division = time_until_option_expiry / (float) time_steps_per_simulation;
@@ -64,9 +64,9 @@ float Monte_Carlo(const int number_of_simulations, const int time_steps_per_simu
         }
     }
     
-    float sum = std::accumulate(thread_output_vector.begin(),
+    const float sum = std::accumulate(thread_output_vector.begin(),
                                 thread_output_vector.end(),
-                                float(0));
+                                0.0f);
     
     return sum / number_of_simulations;
 }

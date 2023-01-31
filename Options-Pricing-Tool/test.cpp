@@ -30,8 +30,8 @@ TEST(Monte_Carlo_European, Put) {
 }
 
 TEST(Payoff, European_Put) {
-    std::vector<float> v_0 = { 6,4,1,5 };
-    std::vector<float> v_1 = { 1,2,3,10 };
+    const std::vector<float> v_0 = { 6,4,1,5 };
+    const std::vector<float> v_1 = { 1,2,3,10 };
 
     EXPECT_EQ(Payoff::European_Put(10, v_0), 5);
     EXPECT_EQ(Payoff::European_Put(5, v_1), 0);
@@ -44,8 +44,8 @@ TEST(Monte_Carlo_European, Call) {
 }
 
 TEST(Payoff, European_Call) {
-    std::vector<float> v_0 = { 6,4,1,5 };
-    std::vector<float> v_1 = { 1,2,3,10 };
+    const std::vector<float> v_0 = { 6,4,1,5 };
+    const std::vector<float> v_1 = { 1,2,3,10 };
 
     EXPECT_EQ(Payoff::European_Call(10, v_0), 0);
     EXPECT_EQ(Payoff::European_Call(5, v_1), 5);
@@ -58,8 +58,8 @@ TEST(Monte_Carlo_European, Chooser) {
 }
 
 TEST(Payoff, European_Chooser) {
-    std::vector<float> v_0 = { 6,4,1,5 };
-    std::vector<float> v_1 = { 1,2,3,10 };
+    const std::vector<float> v_0 = { 6,4,1,5 };
+    const std::vector<float> v_1 = { 1,2,3,10 };
 
     EXPECT_EQ(Payoff::European_Chooser(10, v_0), 5);
     EXPECT_EQ(Payoff::European_Chooser(5, v_1), 5);
@@ -72,8 +72,8 @@ TEST(Monte_Carlo_European, Lookback_Max_Call) {
 }
 
 TEST(Payoff, European_Lookback_Max_Call) {
-    std::vector<float> v_0 = { 6,4,1,5 };
-    std::vector<float> v_1 = { 1,2,3,10 };
+    const std::vector<float> v_0 = { 6,4,1,5 };
+    const std::vector<float> v_1 = { 1,2,3,10 };
 
     EXPECT_EQ(Payoff::European_Lookback_Max_Call(10, v_0), 0);
     EXPECT_EQ(Payoff::European_Lookback_Max_Call(5, v_1), 5);
@@ -86,8 +86,8 @@ TEST(Monte_Carlo_European, Lookback_Min_Put) {
 }
 
 TEST(Payoff, European_Lookback_Min_Put) {
-    std::vector<float> v_0 = { 6,4,1,5 };
-    std::vector<float> v_1 = { 3,2,3,10 };
+    const std::vector<float> v_0 = { 6,4,1,5 };
+    const std::vector<float> v_1 = { 3,2,3,10 };
 
     EXPECT_EQ(Payoff::European_Lookback_Min_Put(10, v_0), 9);
     EXPECT_EQ(Payoff::European_Lookback_Min_Put(5, v_1), 3);
@@ -100,8 +100,8 @@ TEST(Monte_Carlo_European, Call_Squared) {
 }
 
 TEST(Payoff, European_Call_Squared) {
-    std::vector<float> v_0 = { 6,4,1,5 };
-    std::vector<float> v_1 = { 1,2,3,10 };
+    const std::vector<float> v_0 = { 6,4,1,5 };
+    const std::vector<float> v_1 = { 1,2,3,10 };
 
     EXPECT_EQ(Payoff::European_Call_Squared(10, v_0), 0);
     EXPECT_EQ(Payoff::European_Call_Squared(5, v_1), 25);
@@ -114,8 +114,8 @@ TEST(Monte_Carlo_European, Put_Squared) {
 }
 
 TEST(Payoff, European_Put_Squared) {
-    std::vector<float> v_0 = { 6,4,1,5 };
-    std::vector<float> v_1 = { 1,2,3,10 };
+    const std::vector<float> v_0 = { 6,4,1,5 };
+    const std::vector<float> v_1 = { 1,2,3,10 };
 
     EXPECT_EQ(Payoff::European_Put_Squared(10, v_0), 25);
     EXPECT_EQ(Payoff::European_Put_Squared(5, v_1), 0);
@@ -131,7 +131,7 @@ TEST(Monte_Carlo_Arithmetic_Asian, Put) {
 }
 
 TEST(Payoff, Asian_Fixed_Strike_Arithmetic_Put) {
-    std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
+    const std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
     EXPECT_NEAR(Payoff::Asian_Fixed_Strike_Arithmetic_Put(10, array), 6.44444444, tolerance);
 }
 
@@ -142,7 +142,7 @@ TEST(Monte_Carlo_Arithmetic_Asian, Call) {
 }
 
 TEST(Payoff, Asian_Fixed_Strike_Arithmetic_Call) {
-    std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
+    const std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
     EXPECT_NEAR(Payoff::Asian_Fixed_Strike_Arithmetic_Call(1, array), 2.5555555555556, tolerance);
 }
 
@@ -153,7 +153,7 @@ TEST(Monte_Carlo_Arithmetic_Asian, Chooser) {
 }
 
 TEST(Payoff, Asian_Fixed_Strike_Arithmetic_Chooser) {
-    std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
+    const std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
     EXPECT_NEAR(Payoff::Asian_Fixed_Strike_Arithmetic_Chooser(1, array), 2.5555555555556, tolerance);
     EXPECT_NEAR(Payoff::Asian_Fixed_Strike_Arithmetic_Chooser(10, array), 6.44444444, tolerance);
 }
@@ -167,7 +167,7 @@ TEST(Monte_Carlo_Geometric_Asian, Put) {
 }
 
 TEST(Payoff, Asian_Fixed_Strike_Geometric_Put) {
-    std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
+    const std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
     EXPECT_NEAR(Payoff::Asian_Fixed_Strike_Geometric_Put(10, array), 7.20231502, tolerance);
 }
 
@@ -178,7 +178,7 @@ TEST(Monte_Carlo_Geometric_Asian, Call) {
 }
 
 TEST(Payoff, Asian_Fixed_Strike_Geometric_Call) {
-    std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
+    const std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
     EXPECT_NEAR(Payoff::Asian_Fixed_Strike_Geometric_Call(1, array), 1.7976849784659, tolerance);
 }
 
@@ -189,7 +189,7 @@ TEST(Monte_Carlo_Geometric_Asian, Chooser) {
 }
 
 TEST(Payoff, Asian_Fixed_Strike_Geometric_Chooser) {
-    std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
+    const std::vector<float> array = { 5, 4, 1, 7, 1, 3, 5, 1, 5 };
     EXPECT_NEAR(Payoff::Asian_Fixed_Strike_Geometric_Chooser(1, array), 1.7976849784659, tolerance);
     EXPECT_NEAR(Payoff::Asian_Fixed_Strike_Geometric_Chooser(10, array), 7.20231502, tolerance);
 }
@@ -197,12 +197,12 @@ TEST(Payoff, Asian_Fixed_Strike_Geometric_Chooser) {
 // ---------------------- Average Tests ----------------------
 
 TEST(Average, Geometric) {
-	std::vector<float> array = { 1,2,3,4,5,6,7 };
+    const std::vector<float> array = { 1,2,3,4,5,6,7 };
 	EXPECT_NEAR(Geometric_Average(array), 3.380015159141, 10e-6);
 }
 
 TEST(Average, Arithmetic) {
-	std::vector<float> array = { 1,2,3,4,5,6,7 };
+    const std::vector<float> array = { 1,2,3,4,5,6,7 };
 	EXPECT_NEAR(Arithmetic_Average(array), 4.0, 10e-6);
 }
 
