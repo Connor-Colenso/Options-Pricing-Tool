@@ -7,8 +7,8 @@
 // ---------------------- General Test Setup --------------------------
 
 // Monte Carlo Settings.
-static constexpr int time_steps_per_simulation = 500;
-static constexpr int number_of_simulations = 500000;
+static constexpr int time_steps_per_simulation = 1000;
+static constexpr int number_of_simulations = 50000;
 
 // Option Settings.
 static constexpr float strike = 15.0f;

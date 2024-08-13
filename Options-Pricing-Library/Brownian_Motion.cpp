@@ -1,18 +1,23 @@
 #include "Options-Pricing-Lib.h"
-
+#include "../Options-Pricing-Cuda/normals.cuh"
 
 namespace Utility {
     void Brownian_Motion(std::vector<float>& array) {
-        // Sample random values from a standardised normal distribution.
-        std::minstd_rand gen(std::random_device{}());
-        std::normal_distribution<> d{ 0, 1 };
+
+        //array = cudaBrownianMotion(array.size());
+
+         //Sample random values from a standardised normal distribution.
+        //std::minstd_rand gen(std::random_device{}());
+        //std::normal_distribution<> d{ 0, 1 };
+
+        std::vector<float> normals = cudaNormals(array.size());
 
         float tmp = 0.0f;
         float dt = 1.0f / std::sqrtf(array.size());
 
         for (int i = 0; i < array.size(); ++i) {
             array[i] = tmp;
-            tmp += float(d(gen)) * dt;
+            tmp += float(normals.at(i)) * dt;
         }
     }
 
