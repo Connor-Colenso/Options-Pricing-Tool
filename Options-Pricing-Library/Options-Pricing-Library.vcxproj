@@ -160,15 +160,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Asset.h" />
+    <ClInclude Include="CudaNormalDistributor.h" />
     <ClInclude Include="Options-Pricing-Lib.h" />
+    <ClInclude Include="Portfolio.h" />
+    <ClInclude Include="Price.h" />
+    <ClInclude Include="PriceError.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Asset.cpp" />
     <ClCompile Include="Brownian_Motion.cpp" />
+    <ClCompile Include="CudaNormalDistributor.cpp" />
     <ClCompile Include="Monte_Carlo.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MaxSpeed</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MaxSpeed</Optimization>
     </ClCompile>
     <ClCompile Include="Payoff.cpp" />
+    <ClCompile Include="Portfolio.cpp" />
+    <ClCompile Include="Price.cpp" />
+    <ClCompile Include="PriceError.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

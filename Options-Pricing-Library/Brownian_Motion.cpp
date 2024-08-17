@@ -1,5 +1,6 @@
 #include "Options-Pricing-Lib.h"
 #include "../Options-Pricing-Cuda/normals.cuh"
+#include "CudaNormalDistributor.h"
 
 namespace Utility {
     void Brownian_Motion(std::vector<float>& array) {
@@ -10,7 +11,7 @@ namespace Utility {
         //std::minstd_rand gen(std::random_device{}());
         //std::normal_distribution<> d{ 0, 1 };
 
-        std::vector<float> normals = cudaNormals(array.size());
+        std::vector<float> normals = CudaNormalDistributor::requestNormals(array.size());
 
         float tmp = 0.0f;
         float dt = 1.0f / std::sqrtf(array.size());
