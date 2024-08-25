@@ -5,12 +5,6 @@
 namespace Utility {
     void Brownian_Motion(std::vector<float>& array) {
 
-        //array = cudaBrownianMotion(array.size());
-
-         //Sample random values from a standardised normal distribution.
-        //std::minstd_rand gen(std::random_device{}());
-        //std::normal_distribution<> d{ 0, 1 };
-
         std::vector<float> normals = CudaNormalDistributor::requestNormals(array.size());
 
         float tmp = 0.0f;
@@ -21,6 +15,20 @@ namespace Utility {
             tmp += float(normals.at(i)) * dt;
         }
     }
+
+    //void Brownian_Motion(std::vector<float>& array) {
+    //    // Sample random values from a standardised normal distribution.
+    //    std::minstd_rand gen(std::random_device{}());
+    //    std::normal_distribution<> d{ 0, 1 };
+
+    //    float tmp = 0.0f;
+    //    float dt = 1.0f / std::sqrtf(array.size());
+
+    //    for (int i = 0; i < array.size(); ++i) {
+    //        array[i] = tmp;
+    //        tmp += float(d(gen)) * dt;
+    //    }
+    //}
 
     void Geometric_Brownian_Motion(std::vector<float>& array, const float& x0, const float& t, const float& mu, const float& sigma, const float& pre_t_division, const float& pre_calc_drift) {
 

@@ -1,5 +1,5 @@
 #include "CudaNormalDistributor.h"
-#include "../Options-Pricing-Cuda/normals.cuh" // Ensure this file is properly included and linked.
+#include "../Options-Pricing-Cuda/normals.cuh"
 
 size_t CudaNormalDistributor::m_startIndex = CudaNormalDistributor::m_normalsToStock;
 std::vector<float> CudaNormalDistributor::m_internalNormals;
