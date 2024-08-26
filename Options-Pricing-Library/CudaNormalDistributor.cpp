@@ -1,24 +1,32 @@
 #include "CudaNormalDistributor.h"
 #include "../Options-Pricing-Cuda/normals.cuh"
+#include <random>
 
-size_t CudaNormalDistributor::m_startIndex = CudaNormalDistributor::m_normalsToStock;
-std::vector<float> CudaNormalDistributor::m_internalNormals;
-std::mutex CudaNormalDistributor::m_requestNormalsMutex; 
+namespace {
+	// Create a random device and a random number generator
+	static std::random_device rd;  // Obtain a random number from hardware
+	static std::mt19937 gen(rd()); // Seed the generator with the random device
 
-std::vector<float> CudaNormalDistributor::requestNormals(size_t amountRequested)
-{
-	auto lock = std::unique_lock<std::mutex>(m_requestNormalsMutex);
+	// Define the distribution range
 
-	if (m_startIndex + amountRequested > m_normalsToStock) {
-		m_internalNormals = cudaNormals(m_normalsToStock);
-		m_startIndex = 0;
+
+	[[nodiscard]] int randInt(const int min, const int max) {
+		static std::uniform_int_distribution<> dis(min, max);
+		// Generate and return the random number
+		return dis(gen);
 	}
+}
 
-	std::vector<float> normalsOut(amountRequested); 
-	std::copy(m_internalNormals.begin() + m_startIndex,
-		m_internalNormals.begin() + m_startIndex + amountRequested,
-		normalsOut.begin());
-	m_startIndex += amountRequested;
+namespace CudaNormalDistributor {
 
-	return normalsOut;
+	// Assuming cudaNormals is a function that returns a std::vector<float>
+	const static std::vector<float> normals = cudaNormals(100000000);
+
+	std::span<const float> requestNormals(const size_t amountRequested) {
+
+
+		// Assuming randInt is defined elsewhere
+		int offset = randInt(0, normals.size() - amountRequested);
+		return std::span<const float>(normals.data() + offset, amountRequested);
+	}
 }

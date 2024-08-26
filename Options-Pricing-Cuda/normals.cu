@@ -17,23 +17,22 @@ static void initRandGen() {
 }
 
 
-[[nodiscard]] std::vector<float> cudaNormals(const int steps) {
+std::vector<float> cudaNormals(const int steps) {
+    if (curandGenerator == nullptr) initRandGen();
 
-	if (curandGenerator == nullptr) initRandGen();
+    const float dt = 1.0f / float(steps);
 
-	const float dt = 1.0f / float(steps);
+    float* gpuPtr;
+    cudaMalloc(&gpuPtr, steps * sizeof(float));
 
-	float* gpuPtr;
-	cudaMalloc(&gpuPtr, steps * sizeof(float));
+    curandGenerateNormal(curandGenerator, gpuPtr, steps, 0.0f, 1.0f);
+    thrust::device_ptr<float> gpu_vec(gpuPtr);
 
-	curandGenerateNormal(curandGenerator, gpuPtr, steps, 0.0f, 1.0f);
-	thrust::device_ptr<float> gpu_vec(gpuPtr);
+    std::vector<float> output_vec(steps);
 
-	std::vector<float> output_vec(steps);
+    cudaMemcpy(output_vec.data(), gpuPtr, steps * sizeof(float), cudaMemcpyDeviceToHost);
 
-	cudaMemcpy(output_vec.data(), gpuPtr, steps * sizeof(float), cudaMemcpyDeviceToHost);
+    cudaFree(gpuPtr);
 
-	cudaFree(gpuPtr);
-
-	return output_vec;
+    return output_vec;
 }
