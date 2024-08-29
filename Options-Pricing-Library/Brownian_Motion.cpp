@@ -36,7 +36,7 @@ namespace Utility {
 
         const float pre_calc = pre_calc_drift * pre_t_division;
 
-        for (int i = 0; i < brownian_motion_vec.size(); i++) {
+        for (size_t i = 0; i < brownian_motion_vec.size(); i++) {
             brownian_motion_vec[i] = x0 * std::expf(pre_calc * i + brownian_motion_vec[i] * sigma);
         }
     }
