@@ -34,13 +34,13 @@ namespace Payoff {
     }
 
     float European_Lookback_Max_Call(const float& strike, const std::vector<float>& array) {
-        float payoff = (*std::max_element(array.begin(), array.end()) - strike);
+        float payoff = (*std::max_element(array.cbegin(), array.cend()) - strike);
 
         return (payoff <= 0) ? 0 : payoff;
     }
 
     float European_Lookback_Min_Put(const float& strike, const std::vector<float>& array) {
-        float payoff = (strike - *std::min_element(array.begin(), array.end()));
+        float payoff = (strike - *std::min_element(array.cbegin(), array.cend()));
 
         return (payoff <= 0) ? 0 : payoff;
     }
@@ -89,17 +89,17 @@ namespace Payoff {
 }
 
 float Arithmetic_Average(const std::vector<float>& array) {
-    return std::accumulate(array.begin(), array.end(), float(0)) / (float)array.size();
+    return std::accumulate(array.cbegin(), array.cend(), 0.0f) / (float)array.size();
 }
 
 float Geometric_Average(const std::vector<float>& array) {
 
-	std::vector<float> logs(array.size());
+    float log2fsum = std::accumulate(array.cbegin(), array.cend(), 0.0f,
+        [](const float runningTotal, const float val) -> float {
+            return runningTotal + std::log2f(val);
+        });
 
-    float total_prod = 1.0f;
-    float exponent = 1.0f / (float) array.size();
-	std::transform(array.begin(), array.end(), logs.begin(), std::log2f);
-	float sum = (1.0f / (float) array.size()) * std::accumulate(logs.begin(), logs.end(), 0.0f);
+	float sum = (1.0f / (float) array.size()) * log2fsum;
 
     return pow(2.0f, sum);
 }

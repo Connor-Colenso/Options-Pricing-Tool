@@ -8,7 +8,7 @@ namespace Utility {
         std::span<const float> normals = CudaNormalDistributor::requestNormals(array.size());
 
         float tmp = 0.0f;
-        float dt = 1.0f / std::sqrtf(array.size());
+        float dt = 1.0f / std::sqrtf((float) array.size());
 
         for (int i = 0; i < array.size(); ++i) {
             array[i] = tmp;

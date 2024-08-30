@@ -4,10 +4,12 @@ namespace {
 
     std::vector<std::vector<float>> memory_cache;
 
-    void Monte_Carlo_Core(std::vector<float>& gbm, int simulations_per_thread, const int time_steps_per_simulation, const float strike, const float risk_free_interest_rate, const float continuous_dividend_yield, const float time_until_option_expiry, const float volatility, const float spot_price_of_underlying, float (*payoff_function)(const float& strike, const std::vector<float>& array), int thread_index, std::vector<float>& thread_output_vector) {
+    float Monte_Carlo_Core(const int simulations_per_thread, const int time_steps_per_simulation, const float strike, const float risk_free_interest_rate, const float continuous_dividend_yield, const float time_until_option_expiry, const float volatility, const float spot_price_of_underlying, float (*payoff_function)(const float&, const std::vector<float>&), const int thread_index) {
+
+        std::vector<float>& gbm = memory_cache[thread_index];
 
         float sum_payoff = 0;
-        const float discount_factor = std::exp(-(risk_free_interest_rate - continuous_dividend_yield) * time_until_option_expiry);
+        const float discount_factor = std::expf(-(risk_free_interest_rate - continuous_dividend_yield) * time_until_option_expiry);
 
         // For use in GBM/BM.
         float pre_t_division = time_until_option_expiry / (float)time_steps_per_simulation;
@@ -18,23 +20,18 @@ namespace {
             sum_payoff += (*payoff_function)(strike, gbm) * discount_factor;
         }
 
-        thread_output_vector[thread_index] = sum_payoff;
+        return sum_payoff;
     }
 }
 
 
-float Monte_Carlo(const int number_of_simulations, const int time_steps_per_simulation, const float& strike, const float risk_free_interest_rate, const float& continuous_dividend_yield, const float time_until_option_expiry, const float volatility, const float spot_price_of_underlying, float (*payoff_function)(const float& strike, const std::vector<float>& array), int thread_override) {
+float Monte_Carlo(const int number_of_simulations, const int time_steps_per_simulation, const float& strike, const float risk_free_interest_rate, const float& continuous_dividend_yield, const float time_until_option_expiry, const float volatility, const float spot_price_of_underlying, float (*payoff_function)(const float& strike, const std::vector<float>& array)) {
     
-    int total_threads = std::thread::hardware_concurrency();
-    
-    if (thread_override != -1) {
-        total_threads = thread_override;
-    }
+    const int total_threads = std::thread::hardware_concurrency();
     
     int simulations_per_thread = number_of_simulations / total_threads;
     int simulations_remaining = number_of_simulations;
-    std::vector<float> thread_output_vector(total_threads+1);
-    std::vector<std::jthread> threads;
+    std::vector<std::future<float>> futures;
     
     int thread_index = 0;
     
@@ -51,8 +48,7 @@ float Monte_Carlo(const int number_of_simulations, const int time_steps_per_simu
             simulations_per_thread = simulations_remaining;
         }
 
-        threads.emplace_back(Monte_Carlo_Core,
-            std::ref(memory_cache[thread_index]),
+        futures.emplace_back(std::async(std::launch::async, Monte_Carlo_Core,
             simulations_per_thread,
             time_steps_per_simulation,
             strike,
@@ -62,22 +58,16 @@ float Monte_Carlo(const int number_of_simulations, const int time_steps_per_simu
             volatility,
             spot_price_of_underlying,
             payoff_function,
-            thread_index,
-            std::ref(thread_output_vector));
-
-        //threads.emplace_back();
+            thread_index));
 
         thread_index++;
         simulations_remaining -= simulations_per_thread;
     }
 
-    for(auto& thread : threads) {
-        thread.join();
+    float sum = 0;
+    for(auto& future : futures) {
+        sum += future.get();
     }
-    
-    const float sum = std::accumulate(thread_output_vector.begin(),
-                                thread_output_vector.end(),
-                                0.0f);
     
     return sum / number_of_simulations;
 }
