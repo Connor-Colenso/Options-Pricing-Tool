@@ -4,7 +4,7 @@ namespace {
 
     std::vector<std::vector<float>> memory_cache;
 
-    float Monte_Carlo_Core(const int simulations_per_thread, const int time_steps_per_simulation, const float strike, const float risk_free_interest_rate, const float continuous_dividend_yield, const float time_until_option_expiry, const float volatility, const float spot_price_of_underlying, float (*payoff_function)(const float&, const std::vector<float>&), const int thread_index) {
+    float Monte_Carlo_Core(const int simulations_per_thread, const int time_steps_per_simulation, const float strike, const float risk_free_interest_rate, const float continuous_dividend_yield, const float time_until_option_expiry, const float volatility, const float spot_price_of_underlying, std::function<float(const float&, const std::vector<float>&)> payoff_function, const int thread_index) {
 
         std::vector<float>& gbm = memory_cache[thread_index];
 
@@ -12,12 +12,12 @@ namespace {
         const float discount_factor = std::expf(-(risk_free_interest_rate - continuous_dividend_yield) * time_until_option_expiry);
 
         // For use in GBM/BM.
-        float pre_t_division = time_until_option_expiry / (float)time_steps_per_simulation;
-        float pre_calc_drift = (risk_free_interest_rate - continuous_dividend_yield) - 0.5f * volatility * volatility;
+        const float pre_t_division = time_until_option_expiry / (float)time_steps_per_simulation;
+        const float pre_calc_drift = (risk_free_interest_rate - continuous_dividend_yield) - 0.5f * volatility * volatility;
 
         for (int i = 0; i < simulations_per_thread; i++) {
             Utility::Geometric_Brownian_Motion(gbm, spot_price_of_underlying, time_until_option_expiry, risk_free_interest_rate - continuous_dividend_yield, volatility, pre_t_division, pre_calc_drift);
-            sum_payoff += (*payoff_function)(strike, gbm) * discount_factor;
+            sum_payoff += payoff_function(strike, gbm) * discount_factor;
         }
 
         return sum_payoff;

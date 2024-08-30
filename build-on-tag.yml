@@ -1,0 +1,33 @@
+name: Build on Tag
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers the workflow on tags starting with 'v', e.g., 'v1.0.0'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
+      - name: Set up Visual Studio 2022
+        uses: microsoft/setup-msbuild@v1
+        with:
+          vs-version: '2022'
+
+      - name: Build the solution
+        run: msbuild /t:Build /p:Configuration=Release /p:Platform=x64 YourSolution.sln
+
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: |
+            **/*.exe
+            **/*.dll
+            **/*.pdb
+            **/*.lib
+            # Add any other files you want to keep

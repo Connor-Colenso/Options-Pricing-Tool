@@ -7,6 +7,7 @@
 #include <numeric>
 #include <span>
 #include <future>
+#include <functional>
 
 namespace Utility {
 	void Brownian_Motion(std::vector<float>& array);

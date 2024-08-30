@@ -5,10 +5,10 @@
 namespace Utility {
     void Brownian_Motion(std::vector<float>& array) {
 
-        std::span<const float> normals = CudaNormalDistributor::requestNormals(array.size());
+        const std::span<const float> normals = CudaNormalDistributor::requestNormals(array.size());
 
         float tmp = 0.0f;
-        float dt = 1.0f / std::sqrtf((float) array.size());
+        const float dt = 1.0f / std::sqrtf((float) array.size());
 
         for (int i = 0; i < array.size(); ++i) {
             array[i] = tmp;
@@ -36,7 +36,7 @@ namespace Utility {
 
         const float pre_calc = pre_calc_drift * pre_t_division;
 
-        for (size_t i = 0; i < brownian_motion_vec.size(); i++) {
+        for (size_t i = 0; i < brownian_motion_vec.size(); ++i) {
             brownian_motion_vec[i] = x0 * std::expf(pre_calc * i + brownian_motion_vec[i] * sigma);
         }
     }
