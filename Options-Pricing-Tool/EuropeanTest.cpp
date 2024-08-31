@@ -59,12 +59,12 @@ TEST(Payoff, European_Put_Squared) {
 }
 
 
-template <std::size_t N>
-constexpr void testEuropeanCallPower(const float strike, const std::vector<float>& v_0, const std::vector<float>& answerVector) {
+template <const std::size_t start, const std::size_t end>
+constexpr void testEuropeanCallPower(const float strike, const std::vector<float>& vec, const std::vector<float>& answerVector) {
 
-    if constexpr (N < 5) {
-        EXPECT_NEAR(Payoff::EuropeanCallPower<N>(strike, v_0), answerVector[N], tolerance);
-        testEuropeanCallPower<N + 1>(strike, v_0, answerVector);
+    if constexpr (start < end) {
+        EXPECT_NEAR(Payoff::EuropeanCallPower<start>(strike, vec), answerVector[start - powStart], tolerance);
+        testEuropeanCallPower<start + 1, end>(strike, vec, answerVector);
     }
 }
 
@@ -72,14 +72,19 @@ TEST(Payoff, European_Call_Squared) {
     const std::vector<float> fakePath0 = { 6,4,1,15 };
     const std::vector<float> fakePath1 = { 1,2,3,11.3 };
 
-    const std::vector<float> answerVector0 = { 1, 5, 25, 125, 625 };
-    const std::vector<float> answerVector1 = { 1, 9.800000191, 96.04000092, 941.1920166, 9223.681641 };
+    const std::vector<float> answerVector0 = { 25, 125, 625, 3125 };
+    const std::vector<float> answerVector1 = { 96.04000092, 941.1920166, 9223.681641, 90392.0818447 };
 
     constexpr float strike0 = 10;
     constexpr float strike1 = 1.5;
 
-    testEuropeanCallPower<0>(strike0, fakePath0, answerVector0);
-    testEuropeanCallPower<0>(strike1, fakePath1, answerVector1);
+    // Unique case to cross confirm that EuropeanCall = EuropeanCallPower<1>.
+    EXPECT_NEAR(Payoff::EuropeanCallPower<1>(strike0, fakePath0), Payoff::EuropeanCall(strike0, fakePath0), tolerance);
+    EXPECT_NEAR(Payoff::EuropeanCallPower<1>(strike1, fakePath1), Payoff::EuropeanCall(strike1, fakePath1), tolerance);
+
+    // Now we test powers of powStart -> powEnd.
+    testEuropeanCallPower<powStart, powEnd>(strike0, fakePath0, answerVector0);
+    testEuropeanCallPower<powStart, powEnd>(strike1, fakePath1, answerVector1);
 }
 
 //template <std::size_t N>
