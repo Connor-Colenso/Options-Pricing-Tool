@@ -1,11 +1,24 @@
 #pragma once
 #include <vector>
 #include <algorithm>
+#include <cmath>
 
 namespace Payoff {
-	float European_Put(const float& strike, const std::vector<float>& vec);
-	float European_Call(const float& strike, const std::vector<float>& vec);
-	float European_Chooser(const float& strike, const std::vector<float>& vec);
-	float European_Call_Squared(const float& strike, const std::vector<float>& vec);
-	float European_Put_Squared(const float& strike, const std::vector<float>& vec);
+	float EuropeanPut(const float& strike, const std::vector<float>& vec);
+	float EuropeanCall(const float& strike, const std::vector<float>& vec);
+	float EuropeanChooser(const float& strike, const std::vector<float>& vec);
+
+    template<const float t>
+    float EuropeanCallPower(const float& strike, const std::vector<float>& array) {
+        float payoff = (array.back() - strike);
+
+        return (payoff <= 0) ? 0 : std::powf(payoff, t);
+    }
+
+    template<const float t>
+    float EuropeanPutPower(const float& strike, const std::vector<float>& array) {
+        float payoff = (strike - array.back());
+
+        return (payoff <= 0) ? 0 : std::powf(payoff, t);
+    }
 }

@@ -6,7 +6,7 @@ float Arithmetic_Average(const std::vector<float>& array) {
 }
 
 float Geometric_Average(const std::vector<float>& array) {
-    float log2fsum = std::transform_reduce(
+    const float log2fsum = std::transform_reduce(
         array.cbegin(), array.cend(),
         0.0f,
         std::plus<>(),
@@ -15,5 +15,5 @@ float Geometric_Average(const std::vector<float>& array) {
 
     float sum = log2fsum / static_cast<float>(array.size());
 
-    return std::pow(2.0f, sum);
+    return std::powf(2.0f, sum);
 }
