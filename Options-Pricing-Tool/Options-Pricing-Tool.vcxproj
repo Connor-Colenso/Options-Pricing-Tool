@@ -43,6 +43,9 @@
     <ProjectReference Include="..\Options-Pricing-Cuda\Options-Pricing-Cuda.vcxproj">
       <Project>{282d91fc-d2f4-4d9d-8ee8-829d10b6bb15}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Options-Pricing-Library\Options-Pricing-Library.vcxproj">
+      <Project>{c9bb69ad-1aad-4a49-a472-89c77a24b22c}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

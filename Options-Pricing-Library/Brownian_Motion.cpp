@@ -1,6 +1,6 @@
-#include "Options-Pricing-Lib.h"
 #include "../Options-Pricing-Cuda/normals.cuh"
 #include "CudaNormalDistributor.h"
+#include "Brownian_Motion.h"
 
 namespace Utility {
     void Brownian_Motion(std::vector<float>& array) {

@@ -1,9 +1,9 @@
 #include "gtest/gtest.h"
-#include "../Options-Pricing-Library/Options-Pricing-Lib.h"
-#include "../Options-Pricing-Library/Brownian_Motion.cpp"
-#include "../Options-Pricing-Library/CudaNormalDistributor.cpp"
-#include "../Options-Pricing-Library/Monte_Carlo.cpp"
-#include "../Options-Pricing-Library/Payoff.cpp"
+#include "../Options-Pricing-Library/Monte_Carlo.hpp"
+#include "../Options-Pricing-Library/Asian.hpp"
+#include "../Options-Pricing-Library/European.hpp"
+#include "../Options-Pricing-Library/Russian.hpp"
+#include "../Options-Pricing-Library/Utility.h"
 
 // ---------------------- General Test Setup --------------------------
 namespace {
@@ -70,29 +70,29 @@ TEST(Payoff, European_Chooser) {
 // --- Lookback Max Option (Also known as Russian) ---
 
 TEST(Monte_Carlo_European, Lookback_Max_Call) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Lookback_Max_Call), 0.37840631604194641, tolerance * 3);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::Lookback_Max_Call), 0.37840631604194641, tolerance * 3);
 }
 
-TEST(Payoff, European_Lookback_Max_Call) {
+TEST(Payoff, Lookback_Max_Call) {
     const std::vector<float> v_0 = { 6,4,1,5 };
     const std::vector<float> v_1 = { 1,2,3,10 };
 
-    EXPECT_EQ(Payoff::European_Lookback_Max_Call(10, v_0), 0);
-    EXPECT_EQ(Payoff::European_Lookback_Max_Call(5, v_1), 5);
+    EXPECT_EQ(Payoff::Lookback_Max_Call(10, v_0), 0);
+    EXPECT_EQ(Payoff::Lookback_Max_Call(5, v_1), 5);
 }
 
 // --- Lookback Min Option ---
 
 TEST(Monte_Carlo_European, Lookback_Min_Put) {
-    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::European_Lookback_Min_Put), 0.70214629173278809, tolerance * 3);
+    EXPECT_NEAR(Monte_Carlo(number_of_simulations, time_steps_per_simulation, strike, risk_free_interest_rate, continuous_dividend_yield, time_until_option_expiry, volatility, spot_price_of_underlying, &Payoff::Lookback_Min_Put), 0.70214629173278809, tolerance * 3);
 }
 
-TEST(Payoff, European_Lookback_Min_Put) {
+TEST(Payoff, Lookback_Min_Put) {
     const std::vector<float> v_0 = { 6,4,1,5 };
     const std::vector<float> v_1 = { 3,2,3,10 };
 
-    EXPECT_EQ(Payoff::European_Lookback_Min_Put(10, v_0), 9);
-    EXPECT_EQ(Payoff::European_Lookback_Min_Put(5, v_1), 3);
+    EXPECT_EQ(Payoff::Lookback_Min_Put(10, v_0), 9);
+    EXPECT_EQ(Payoff::Lookback_Min_Put(5, v_1), 3);
 }
 
 // --- Call Squared Option ---

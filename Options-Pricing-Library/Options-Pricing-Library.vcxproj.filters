@@ -16,11 +16,17 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{60eac621-46d0-4cd2-8fd3-0b92b01b9d29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{599c682a-905e-4f76-a28b-b767f9c04015}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utility\Payoff">
+      <UniqueIdentifier>{1c45900e-b11e-4731-8833-532be643b661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility\Payoff">
+      <UniqueIdentifier>{adf41519-c9a7-4e26-a031-7b288e2bb6bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Options-Pricing-Lib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Asset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -36,12 +42,21 @@
     <ClInclude Include="CudaNormalDistributor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Brownian_Motion.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Monte_Carlo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Asian.hpp">
+      <Filter>Header Files\Utility\Payoff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Brownian_Motion.cpp">
-      <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="Payoff.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Monte_Carlo.cpp">
@@ -62,8 +77,26 @@
     <ClCompile Include="CudaNormalDistributor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Asian.cpp">
+      <Filter>Source Files\Utility\Payoff</Filter>
+    </ClCompile>
+    <ClCompile Include="European.cpp">
+      <Filter>Source Files\Utility\Payoff</Filter>
+    </ClCompile>
+    <ClCompile Include="Russian.cpp">
+      <Filter>Source Files\Utility\Payoff</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="European.hpp">
+      <Filter>Header Files\Utility\Payoff</Filter>
+    </None>
+    <None Include="Russian.hpp">
+      <Filter>Header Files\Utility\Payoff</Filter>
+    </None>
   </ItemGroup>
 </Project>

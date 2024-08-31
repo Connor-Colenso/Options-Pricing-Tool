@@ -171,27 +171,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Asset.h" />
+    <ClInclude Include="Brownian_Motion.h" />
     <ClInclude Include="CudaNormalDistributor.h" />
-    <ClInclude Include="Options-Pricing-Lib.h" />
+    <ClInclude Include="Asian.hpp" />
+    <ClInclude Include="Monte_Carlo.hpp" />
     <ClInclude Include="Portfolio.h" />
     <ClInclude Include="Price.h" />
     <ClInclude Include="PriceError.h" />
+    <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="Brownian_Motion.cpp" />
     <ClCompile Include="CudaNormalDistributor.cpp" />
+    <ClCompile Include="European.cpp" />
     <ClCompile Include="Monte_Carlo.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MaxSpeed</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MaxSpeed</Optimization>
     </ClCompile>
-    <ClCompile Include="Payoff.cpp" />
     <ClCompile Include="Portfolio.cpp" />
     <ClCompile Include="Price.cpp" />
     <ClCompile Include="PriceError.cpp" />
+    <ClCompile Include="Russian.cpp" />
+    <ClCompile Include="Asian.cpp" />
+    <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="European.hpp" />
     <None Include="packages.config" />
+    <None Include="Russian.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Options-Pricing-Cuda\Options-Pricing-Cuda.vcxproj">
