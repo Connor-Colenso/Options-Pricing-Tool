@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../Options-Pricing-Library/Monte_Carlo.hpp"
+#include "../Options-Pricing-Library/MonteCarlo.hpp"
 #include "../Options-Pricing-Library/Asian.hpp"
 #include "../Options-Pricing-Library/European.hpp"
 #include "../Options-Pricing-Library/Russian.hpp"

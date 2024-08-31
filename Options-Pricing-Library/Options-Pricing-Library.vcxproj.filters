@@ -42,10 +42,10 @@
     <ClInclude Include="CudaNormalDistributor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Brownian_Motion.hpp">
+    <ClInclude Include="BrownianMotion.hpp">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Monte_Carlo.hpp">
+    <ClInclude Include="MonteCarlo.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility.hpp">
@@ -59,7 +59,7 @@
     <ClCompile Include="Brownian_Motion.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Monte_Carlo.cpp">
+    <ClCompile Include="MonteCarlo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Asset.cpp">

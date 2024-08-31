@@ -171,10 +171,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Asset.hpp" />
-    <ClInclude Include="Brownian_Motion.hpp" />
+    <ClInclude Include="BrownianMotion.hpp" />
     <ClInclude Include="CudaNormalDistributor.hpp" />
     <ClInclude Include="Asian.hpp" />
-    <ClInclude Include="Monte_Carlo.hpp" />
+    <ClInclude Include="MonteCarlo.hpp" />
     <ClInclude Include="Portfolio.hpp" />
     <ClInclude Include="Price.hpp" />
     <ClInclude Include="PriceError.hpp" />
@@ -185,7 +185,7 @@
     <ClCompile Include="Brownian_Motion.cpp" />
     <ClCompile Include="CudaNormalDistributor.cpp" />
     <ClCompile Include="European.cpp" />
-    <ClCompile Include="Monte_Carlo.cpp">
+    <ClCompile Include="MonteCarlo.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MaxSpeed</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MaxSpeed</Optimization>
     </ClCompile>
