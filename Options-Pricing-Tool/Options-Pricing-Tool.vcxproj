@@ -34,7 +34,14 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClCompile Include="AsianMonteCarloTest.cpp" />
+    <ClCompile Include="AsianTest.cpp" />
+    <ClCompile Include="EuropeanMonteCarloTest.cpp" />
+    <ClCompile Include="EuropeanTest.cpp" />
+    <ClCompile Include="RussianMonteCarloTest.cpp" />
+    <ClCompile Include="RussianTest.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="UtilityTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -46,6 +53,9 @@
     <ProjectReference Include="..\Options-Pricing-Library\Options-Pricing-Library.vcxproj">
       <Project>{c9bb69ad-1aad-4a49-a472-89c77a24b22c}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Constants.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

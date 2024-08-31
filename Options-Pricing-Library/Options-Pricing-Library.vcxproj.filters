@@ -56,7 +56,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Brownian_Motion.cpp">
+    <ClCompile Include="BrownianMotion.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="MonteCarlo.cpp">
