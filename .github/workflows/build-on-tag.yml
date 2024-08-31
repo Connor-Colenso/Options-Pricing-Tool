@@ -1,35 +1,48 @@
-name: Build on Tag
-
+name: Build
 on:
   push:
-    tags:
-      - 'v*'  # Triggers the workflow on tags starting with 'v', e.g., 'v1.0.0'
-
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
   build:
+    name: Build
     runs-on: windows-latest
-
+    env:
+      BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
+      COVERAGE_RESULTS: coverage_results # Directory where coverage results will be placed
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v3
-
-      - name: Locate MSBuild
-        run: |
-          $msbuildPath = vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
-          echo "MSBuild located at $msbuildPath"
-          echo "MSBUILD_PATH=$msbuildPath\MSBuild\Current\Bin\MSBuild.exe" >> $GITHUB_ENV
-
-      - name: Build the solution
-        run: |
-          &"${{ env.MSBUILD_PATH }}" /t:Build /p:Configuration=Release /p:Platform=x64 YourSolution.sln
-
-      - name: Archive build artifacts
-        uses: actions/upload-artifact@v3
+      - uses: actions/checkout@v4
         with:
-          name: build
-          path: |
-            **/*.exe
-            **/*.dll
-            **/*.pdb
-            **/*.lib
-            # Add any other files you want to keep
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Set up msbuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Setup VSTest.console.exe # Needed to run tests and generate coverage
+        uses: darenm/Setup-VSTest@v1.2
+
+      - name: Install sonar-scanner and build-wrapper
+        uses: sonarsource/sonarcloud-github-c-cpp@v3
+
+      - name: Run build-wrapper
+        run: |
+          build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild sonar_scanner_example.vcxproj /t:rebuild /nodeReuse:false
+      - name: Build tests
+        run: |
+          msbuild test1\test1.vcxproj
+          msbuild test2\test2.vcxproj
+      - name: Run tests with coverage
+        run: >
+          vstest.console.exe test1\*\test1.dll test2\*\test2.dll 
+          /EnableCodeCoverage 
+          /Collect:"Code Coverage;Format=Xml" 
+          /ResultsDirectory:"${{ env.COVERAGE_RESULTS }}"
+      - name: Run sonar-scanner
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }} # Put the name of your token here
+        run: >
+          sonar-scanner 
+          --define sonar.cfamily.compile-commands="${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json"
+          --define sonar.cfamily.vscoveragexml.reportsPath="${{ env.COVERAGE_RESULTS }}/*/*.xml"
