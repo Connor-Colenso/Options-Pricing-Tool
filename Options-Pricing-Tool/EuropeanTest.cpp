@@ -36,12 +36,12 @@ TEST(Payoff, European_Put) {
 //}
 
 
-template <std::size_t N>
+template <std::size_t start, std::size_t end>
 constexpr void testEuropeanPutPower(const float strike, const std::vector<float>& v_0, const std::vector<float>& answerVector) {
 
-    if constexpr (N < 5) {
-        EXPECT_NEAR(Payoff::EuropeanPutPower<N>(strike, v_0), answerVector[N], tolerance);
-        testEuropeanPutPower<N + 1>(strike, v_0, answerVector);
+    if constexpr (start < end) {
+        EXPECT_NEAR(Payoff::EuropeanPutPower<start>(strike, v_0), answerVector[start], tolerance);
+        testEuropeanPutPower<start + 1, end>(strike, v_0, answerVector);
     }
 }
 
@@ -55,8 +55,8 @@ TEST(Payoff, European_Put_Squared) {
     const float strike0 = 10;
     const float strike1 = 1.5;
 
-    testEuropeanPutPower<0>(strike0, v0, answerVector0);
-    testEuropeanPutPower<0>(strike1, v1, answerVector1);
+    testEuropeanPutPower<0, 5>(strike0, v0, answerVector0);
+    testEuropeanPutPower<0, 5>(strike1, v1, answerVector1);
 }
 
 
