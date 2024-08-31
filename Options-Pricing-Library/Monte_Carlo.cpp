@@ -1,5 +1,5 @@
 #include "Monte_Carlo.hpp"
-#include "Brownian_Motion.h"
+#include "Brownian_Motion.hpp"
 
 namespace {
 

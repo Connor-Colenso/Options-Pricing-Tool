@@ -3,7 +3,7 @@
 #include "../Options-Pricing-Library/Asian.hpp"
 #include "../Options-Pricing-Library/European.hpp"
 #include "../Options-Pricing-Library/Russian.hpp"
-#include "../Options-Pricing-Library/Utility.h"
+#include "../Options-Pricing-Library/Utility.hpp"
 
 // ---------------------- General Test Setup --------------------------
 namespace {

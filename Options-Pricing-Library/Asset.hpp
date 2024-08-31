@@ -3,8 +3,8 @@
 #include <expected>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
-#include "PriceError.h"
-#include "Price.h"
+#include "PriceError.hpp"
+#include "Price.hpp"
 
 class Asset
 {

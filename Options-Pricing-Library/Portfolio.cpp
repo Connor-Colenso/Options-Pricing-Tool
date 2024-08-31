@@ -1,4 +1,4 @@
-#include "Portfolio.h"
+#include "Portfolio.hpp"
 
 void Portfolio::addAsset(const std::shared_ptr<Asset> asset) {
 	m_assetVector.push_back(asset);

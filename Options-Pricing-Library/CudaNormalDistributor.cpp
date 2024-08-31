@@ -1,4 +1,4 @@
-#include "CudaNormalDistributor.h"
+#include "CudaNormalDistributor.hpp"
 #include "../Options-Pricing-Cuda/normals.cuh"
 #include <random>
 

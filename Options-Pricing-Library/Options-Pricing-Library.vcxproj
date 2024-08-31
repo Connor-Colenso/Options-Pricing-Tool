@@ -170,15 +170,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Asset.h" />
-    <ClInclude Include="Brownian_Motion.h" />
-    <ClInclude Include="CudaNormalDistributor.h" />
+    <ClInclude Include="Asset.hpp" />
+    <ClInclude Include="Brownian_Motion.hpp" />
+    <ClInclude Include="CudaNormalDistributor.hpp" />
     <ClInclude Include="Asian.hpp" />
     <ClInclude Include="Monte_Carlo.hpp" />
-    <ClInclude Include="Portfolio.h" />
-    <ClInclude Include="Price.h" />
-    <ClInclude Include="PriceError.h" />
-    <ClInclude Include="Utility.h" />
+    <ClInclude Include="Portfolio.hpp" />
+    <ClInclude Include="Price.hpp" />
+    <ClInclude Include="PriceError.hpp" />
+    <ClInclude Include="Utility.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Asset.cpp" />

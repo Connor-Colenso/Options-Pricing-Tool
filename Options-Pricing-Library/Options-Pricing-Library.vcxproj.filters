@@ -27,28 +27,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Asset.h">
+    <ClInclude Include="Asset.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Price.h">
+    <ClInclude Include="Price.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PriceError.h">
+    <ClInclude Include="PriceError.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Portfolio.h">
+    <ClInclude Include="Portfolio.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CudaNormalDistributor.h">
+    <ClInclude Include="CudaNormalDistributor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Brownian_Motion.h">
+    <ClInclude Include="Brownian_Motion.hpp">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Monte_Carlo.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility.h">
+    <ClInclude Include="Utility.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Asian.hpp">

@@ -1,4 +1,4 @@
-#include "Asset.h"
+#include "Asset.hpp"
 
 
 [[nodiscard]] std::expected<Price, PriceError> Asset::getPrice(const boost::gregorian::date& date, const boost::posix_time::time_duration& time) const {
