@@ -1,10 +1,10 @@
-name: Build
+name: Build on Tag
+
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+    tags:
+      - 'v*'  # Triggers the workflow on tags starting with 'v', e.g., 'v1.0.0'
+
 jobs:
   build:
     name: Build
