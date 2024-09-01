@@ -34,14 +34,14 @@ template <const std::size_t start, const std::size_t end>
 constexpr void testEuropeanPutPower(const float strike, const std::vector<float>& vec, const std::vector<float>& answerVector) {
 
     if constexpr (start < end) {
-        EXPECT_NEAR(Payoff::EuropeanPutPower<start>(strike, vec), answerVector[start-powStart], tolerance);
+        EXPECT_NEAR(Payoff::EuropeanPutPower<start>(strike, vec), answerVector[start - powStart], tolerance);
         testEuropeanPutPower<start + 1, end>(strike, vec, answerVector);
     }
 }
 
 TEST(Payoff, European_Put_Squared) {
-    const std::vector<float> fakePath0 = { 6,4,1,5 };
-    const std::vector<float> fakePath1 = { 1,2,3,1 };
+    const std::vector<float> fakePath0 = { 6, 4, 1, 5 };
+    const std::vector<float> fakePath1 = { 1, 2, 3, 1 };
 
     const std::vector<float> answerVector0 = { 25, 125, 625, 3125 };
     const std::vector<float> answerVector1 = { 0.25, 0.125, 0.0625, 0.03125 };
@@ -69,8 +69,8 @@ constexpr void testEuropeanCallPower(const float strike, const std::vector<float
 }
 
 TEST(Payoff, European_Call_Squared) {
-    const std::vector<float> fakePath0 = { 6,4,1,15 };
-    const std::vector<float> fakePath1 = { 1,2,3,11.3 };
+    const std::vector<float> fakePath0 = { 6, 4, 1, 15 };
+    const std::vector<float> fakePath1 = { 1, 2, 3, 11.3 };
 
     const std::vector<float> answerVector0 = { 25, 125, 625, 3125 };
     const std::vector<float> answerVector1 = { 96.04000092, 941.1920166, 9223.681641, 90392.0818447 };

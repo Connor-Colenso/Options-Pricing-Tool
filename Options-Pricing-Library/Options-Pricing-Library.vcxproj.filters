@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Utility\Payoff">
       <UniqueIdentifier>{adf41519-c9a7-4e26-a031-7b288e2bb6bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Pricers">
+      <UniqueIdentifier>{160bfdc0-0eb5-4441-9234-ac44d3fe0a45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Pricers">
+      <UniqueIdentifier>{04bca709-a8ef-4fa9-965e-6203fb673fbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asset.hpp">
@@ -45,22 +51,22 @@
     <ClInclude Include="BrownianMotion.hpp">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="MonteCarlo.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Asian.hpp">
       <Filter>Header Files\Utility\Payoff</Filter>
+    </ClInclude>
+    <ClInclude Include="MonteCarlo.hpp">
+      <Filter>Header Files\Pricers</Filter>
+    </ClInclude>
+    <ClInclude Include="AdvBinomial.hpp">
+      <Filter>Header Files\Pricers</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.hpp">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BrownianMotion.cpp">
       <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="MonteCarlo.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Asset.cpp">
       <Filter>Source Files</Filter>
@@ -86,8 +92,14 @@
     <ClCompile Include="Russian.cpp">
       <Filter>Source Files\Utility\Payoff</Filter>
     </ClCompile>
+    <ClCompile Include="MonteCarlo.cpp">
+      <Filter>Source Files\Pricers</Filter>
+    </ClCompile>
+    <ClCompile Include="AdvBinomial.cpp">
+      <Filter>Source Files\Pricers</Filter>
+    </ClCompile>
     <ClCompile Include="Utility.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
