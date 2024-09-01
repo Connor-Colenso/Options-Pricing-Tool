@@ -13,8 +13,9 @@ float Binomial(const float volatility, const float risk_free_interest_rate, cons
 
     // Initialize the option values at maturity
     for (int i = 0; i <= steps; ++i) {
-        float price_at_maturity = spot_price * pow(u, steps - i) * pow(d, i);
-        option_values[i][steps] = std::max(price_at_maturity - strike, 0.0f); // Payoff of the call option
+        float price_at_maturity = spot_price * powf(u, steps - i) * powf(d, i);
+        option_values[i][steps] = std::max(strike - price_at_maturity, 0.0f); // Payoff of the put option
+        //option_values[i][steps] = std::max(price_at_maturity - strike, 0.0f); // Payoff of the call option
     }
 
     // Iterate backward through the tree
@@ -22,9 +23,10 @@ float Binomial(const float volatility, const float risk_free_interest_rate, cons
         for (int i = 0; i <= j; ++i) {
             float price_up = option_values[i][j + 1];
             float price_down = option_values[i + 1][j + 1];
-            float price_at_node = exp(-risk_free_interest_rate * dt) * (p * price_up + (1 - p) * price_down);
-            float spot_price_at_node = spot_price * pow(u, j - i) * pow(d, i);
-            option_values[i][j] = std::max(price_at_node, spot_price_at_node - strike); // American call option value
+            float price_at_node = expf(-risk_free_interest_rate * dt) * (p * price_up + (1 - p) * price_down);
+            float spot_price_at_node = spot_price * powf(u, j - i) * powf(d, i);
+            option_values[i][j] = std::max(price_at_node, strike - spot_price_at_node); // American put option value
+            //option_values[i][j] = std::max(price_at_node, spot_price_at_node - strike); // American call option value
         }
     }
 
