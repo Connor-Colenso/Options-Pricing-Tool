@@ -7,13 +7,12 @@
 #include "../Options-Pricing-Library/AdvBinomial.hpp"
 
 int main() {
-	const float volatility = 0.05;
-	const float risk_free_interest_rate = 0.05;
+	const float volatility = 0.07f;
+	const float risk_free_interest_rate = 0.09f;
 	const float strike = 5;
 	const float spot_price = 5;
 	const float time_period = 1;
-	const float steps = 5;
+	const int steps = 100;
 
-	std::cout << Binomial(volatility, risk_free_interest_rate, strike, spot_price, time_period, steps);
 
 }

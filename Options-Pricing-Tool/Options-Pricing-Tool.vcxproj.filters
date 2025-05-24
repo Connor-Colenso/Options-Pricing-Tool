@@ -14,14 +14,17 @@
     <ClCompile Include="UtilityTest.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
+    <ClCompile Include="RussianMonteCarloTest.cpp">
+      <Filter>Pricers\Monte Carlo</Filter>
+    </ClCompile>
     <ClCompile Include="AsianMonteCarloTest.cpp">
-      <Filter>MonteCarlo</Filter>
+      <Filter>Pricers\Monte Carlo</Filter>
     </ClCompile>
     <ClCompile Include="EuropeanMonteCarloTest.cpp">
-      <Filter>MonteCarlo</Filter>
+      <Filter>Pricers\Monte Carlo</Filter>
     </ClCompile>
-    <ClCompile Include="RussianMonteCarloTest.cpp">
-      <Filter>MonteCarlo</Filter>
+    <ClCompile Include="AmericanBinomialTest.cpp">
+      <Filter>Pricers\Binomial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -34,8 +37,14 @@
     <Filter Include="Utility\Payoff">
       <UniqueIdentifier>{ce0347b4-8865-4431-9e07-deba5038c100}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MonteCarlo">
-      <UniqueIdentifier>{c2ac9fef-0f6c-444f-a891-c63acf2b3e26}</UniqueIdentifier>
+    <Filter Include="Pricers">
+      <UniqueIdentifier>{69d767af-06d0-462b-bdd6-ce1bd7a7d9f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pricers\Monte Carlo">
+      <UniqueIdentifier>{11189dfc-3a08-42f2-9eef-83a10a3574df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pricers\Binomial">
+      <UniqueIdentifier>{5551dc27-9fd6-4009-9b3c-8cbab1330f73}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

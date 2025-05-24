@@ -171,6 +171,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AdvBinomial.hpp" />
+    <ClInclude Include="American.hpp" />
     <ClInclude Include="Asset.hpp" />
     <ClInclude Include="BrownianMotion.hpp" />
     <ClInclude Include="CudaNormalDistributor.hpp" />
@@ -183,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdvBinomial.cpp" />
+    <ClCompile Include="American.cpp" />
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="BrownianMotion.cpp" />
     <ClCompile Include="CudaNormalDistributor.cpp" />

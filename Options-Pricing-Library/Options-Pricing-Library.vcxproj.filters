@@ -63,6 +63,9 @@
     <ClInclude Include="Utility.hpp">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="American.hpp">
+      <Filter>Header Files\Utility\Payoff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BrownianMotion.cpp">
@@ -100,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="Utility.cpp">
       <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="American.cpp">
+      <Filter>Source Files\Utility\Payoff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

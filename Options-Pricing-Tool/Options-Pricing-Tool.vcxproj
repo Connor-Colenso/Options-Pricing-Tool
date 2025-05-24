@@ -36,6 +36,7 @@
   <ItemGroup>
     <ClCompile Include="AsianMonteCarloTest.cpp" />
     <ClCompile Include="AsianTest.cpp" />
+    <ClCompile Include="AmericanBinomialTest.cpp" />
     <ClCompile Include="EuropeanMonteCarloTest.cpp" />
     <ClCompile Include="EuropeanTest.cpp" />
     <ClCompile Include="RussianMonteCarloTest.cpp" />
